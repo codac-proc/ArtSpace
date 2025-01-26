@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,7 +33,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import jp.math.anti.artspace.ui.theme.ArtSpaceTheme
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,17 +40,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ArtSpaceTheme {
-                ArtSpace(
-                    name = "Android",
-                    modifier = Modifier
-                )
+                ArtSpace()
             }
         }
     }
 }
 
 @Composable
-fun ArtSpace(name: String, modifier: Modifier = Modifier) {
+fun ArtSpace() {
     var pageCount by remember { mutableStateOf(0) }
     val imageResource = when(pageCount){
         1 -> R.drawable.design_ai_1
@@ -89,7 +83,7 @@ fun ArtSpace(name: String, modifier: Modifier = Modifier) {
         }
 
         Column(
-            modifier = Modifier.width(320.dp).height(156.dp).padding(top = 48.dp, bottom = 24.dp).background(Color(0xffecebf4)),
+            modifier = Modifier.fillMaxWidth().height(156.dp).padding(start = 32.dp,end = 32.dp,top = 48.dp, bottom = 24.dp).background(Color(0xffecebf4)),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
@@ -116,7 +110,7 @@ fun ArtSpace(name: String, modifier: Modifier = Modifier) {
         }
 
         Row(
-            modifier = Modifier.width(320.dp),
+            modifier = Modifier.fillMaxWidth().padding(32.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             Button(
@@ -151,6 +145,6 @@ fun ArtSpace(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun ArtSpacePreview() {
     ArtSpaceTheme {
-        ArtSpace("Android")
+        ArtSpace()
     }
 }
